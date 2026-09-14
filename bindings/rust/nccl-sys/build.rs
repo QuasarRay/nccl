@@ -10,7 +10,10 @@ fn main() {
     }
 
     if let Some(dir) = env::var_os("NCCL_LIB_DIR") {
-        println!("cargo:rustc-link-search=native={}", PathBuf::from(dir).display());
+        println!(
+            "cargo:rustc-link-search=native={}",
+            PathBuf::from(dir).display()
+        );
     } else if let Some(home) = env::var_os("NCCL_HOME") {
         let home = PathBuf::from(home);
         for candidate in [home.join("lib"), home.join("lib64")] {

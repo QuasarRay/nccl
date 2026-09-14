@@ -292,12 +292,42 @@ extern "C" {
     pub fn ncclGetUniqueId(unique_id: *mut ncclUniqueId) -> ncclResult_t;
     pub fn pncclGetUniqueId(unique_id: *mut ncclUniqueId) -> ncclResult_t;
 
-    pub fn ncclCommInitRankConfig(comm: *mut ncclComm_t, nranks: c_int, comm_id: ncclUniqueId, rank: c_int, config: *mut ncclConfig_t) -> ncclResult_t;
-    pub fn pncclCommInitRankConfig(comm: *mut ncclComm_t, nranks: c_int, comm_id: ncclUniqueId, rank: c_int, config: *mut ncclConfig_t) -> ncclResult_t;
-    pub fn ncclCommInitRank(comm: *mut ncclComm_t, nranks: c_int, comm_id: ncclUniqueId, rank: c_int) -> ncclResult_t;
-    pub fn pncclCommInitRank(comm: *mut ncclComm_t, nranks: c_int, comm_id: ncclUniqueId, rank: c_int) -> ncclResult_t;
-    pub fn ncclCommInitAll(comm: *mut ncclComm_t, ndev: c_int, devlist: *const c_int) -> ncclResult_t;
-    pub fn pncclCommInitAll(comm: *mut ncclComm_t, ndev: c_int, devlist: *const c_int) -> ncclResult_t;
+    pub fn ncclCommInitRankConfig(
+        comm: *mut ncclComm_t,
+        nranks: c_int,
+        comm_id: ncclUniqueId,
+        rank: c_int,
+        config: *mut ncclConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclCommInitRankConfig(
+        comm: *mut ncclComm_t,
+        nranks: c_int,
+        comm_id: ncclUniqueId,
+        rank: c_int,
+        config: *mut ncclConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclCommInitRank(
+        comm: *mut ncclComm_t,
+        nranks: c_int,
+        comm_id: ncclUniqueId,
+        rank: c_int,
+    ) -> ncclResult_t;
+    pub fn pncclCommInitRank(
+        comm: *mut ncclComm_t,
+        nranks: c_int,
+        comm_id: ncclUniqueId,
+        rank: c_int,
+    ) -> ncclResult_t;
+    pub fn ncclCommInitAll(
+        comm: *mut ncclComm_t,
+        ndev: c_int,
+        devlist: *const c_int,
+    ) -> ncclResult_t;
+    pub fn pncclCommInitAll(
+        comm: *mut ncclComm_t,
+        ndev: c_int,
+        devlist: *const c_int,
+    ) -> ncclResult_t;
     pub fn ncclCommFinalize(comm: ncclComm_t) -> ncclResult_t;
     pub fn pncclCommFinalize(comm: ncclComm_t) -> ncclResult_t;
     pub fn ncclCommDestroy(comm: ncclComm_t) -> ncclResult_t;
@@ -306,16 +336,70 @@ extern "C" {
     pub fn pncclCommAbort(comm: ncclComm_t) -> ncclResult_t;
     pub fn ncclCommRevoke(comm: ncclComm_t, revoke_flags: c_int) -> ncclResult_t;
     pub fn pncclCommRevoke(comm: ncclComm_t, revoke_flags: c_int) -> ncclResult_t;
-    pub fn ncclCommSplit(comm: ncclComm_t, color: c_int, key: c_int, newcomm: *mut ncclComm_t, config: *mut ncclConfig_t) -> ncclResult_t;
-    pub fn pncclCommSplit(comm: ncclComm_t, color: c_int, key: c_int, newcomm: *mut ncclComm_t, config: *mut ncclConfig_t) -> ncclResult_t;
-    pub fn ncclCommShrink(comm: ncclComm_t, exclude_ranks: *mut c_int, exclude_count: c_int, newcomm: *mut ncclComm_t, config: *mut ncclConfig_t, shrink_flags: c_int) -> ncclResult_t;
-    pub fn pncclCommShrink(comm: ncclComm_t, exclude_ranks: *mut c_int, exclude_count: c_int, newcomm: *mut ncclComm_t, config: *mut ncclConfig_t, shrink_flags: c_int) -> ncclResult_t;
+    pub fn ncclCommSplit(
+        comm: ncclComm_t,
+        color: c_int,
+        key: c_int,
+        newcomm: *mut ncclComm_t,
+        config: *mut ncclConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclCommSplit(
+        comm: ncclComm_t,
+        color: c_int,
+        key: c_int,
+        newcomm: *mut ncclComm_t,
+        config: *mut ncclConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclCommShrink(
+        comm: ncclComm_t,
+        exclude_ranks: *mut c_int,
+        exclude_count: c_int,
+        newcomm: *mut ncclComm_t,
+        config: *mut ncclConfig_t,
+        shrink_flags: c_int,
+    ) -> ncclResult_t;
+    pub fn pncclCommShrink(
+        comm: ncclComm_t,
+        exclude_ranks: *mut c_int,
+        exclude_count: c_int,
+        newcomm: *mut ncclComm_t,
+        config: *mut ncclConfig_t,
+        shrink_flags: c_int,
+    ) -> ncclResult_t;
     pub fn ncclCommGetUniqueId(comm: ncclComm_t, unique_id: *mut ncclUniqueId) -> ncclResult_t;
     pub fn pncclCommGetUniqueId(comm: ncclComm_t, unique_id: *mut ncclUniqueId) -> ncclResult_t;
-    pub fn ncclCommGrow(comm: ncclComm_t, nranks: c_int, unique_id: *const ncclUniqueId, rank: c_int, newcomm: *mut ncclComm_t, config: *mut ncclConfig_t) -> ncclResult_t;
-    pub fn pncclCommGrow(comm: ncclComm_t, nranks: c_int, unique_id: *const ncclUniqueId, rank: c_int, newcomm: *mut ncclComm_t, config: *mut ncclConfig_t) -> ncclResult_t;
-    pub fn ncclCommInitRankScalable(newcomm: *mut ncclComm_t, nranks: c_int, myrank: c_int, n_id: c_int, comm_ids: *mut ncclUniqueId, config: *mut ncclConfig_t) -> ncclResult_t;
-    pub fn pncclCommInitRankScalable(newcomm: *mut ncclComm_t, nranks: c_int, myrank: c_int, n_id: c_int, comm_ids: *mut ncclUniqueId, config: *mut ncclConfig_t) -> ncclResult_t;
+    pub fn ncclCommGrow(
+        comm: ncclComm_t,
+        nranks: c_int,
+        unique_id: *const ncclUniqueId,
+        rank: c_int,
+        newcomm: *mut ncclComm_t,
+        config: *mut ncclConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclCommGrow(
+        comm: ncclComm_t,
+        nranks: c_int,
+        unique_id: *const ncclUniqueId,
+        rank: c_int,
+        newcomm: *mut ncclComm_t,
+        config: *mut ncclConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclCommInitRankScalable(
+        newcomm: *mut ncclComm_t,
+        nranks: c_int,
+        myrank: c_int,
+        n_id: c_int,
+        comm_ids: *mut ncclUniqueId,
+        config: *mut ncclConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclCommInitRankScalable(
+        newcomm: *mut ncclComm_t,
+        nranks: c_int,
+        myrank: c_int,
+        n_id: c_int,
+        comm_ids: *mut ncclUniqueId,
+        config: *mut ncclConfig_t,
+    ) -> ncclResult_t;
 
     pub fn ncclGetErrorString(result: ncclResult_t) -> *const c_char;
     pub fn pncclGetErrorString(result: ncclResult_t) -> *const c_char;
@@ -326,81 +410,490 @@ extern "C" {
     #[cfg(target_os = "linux")]
     pub fn pncclResetDebugInit();
     pub fn ncclCommGetAsyncError(comm: ncclComm_t, async_error: *mut ncclResult_t) -> ncclResult_t;
-    pub fn pncclCommGetAsyncError(comm: ncclComm_t, async_error: *mut ncclResult_t) -> ncclResult_t;
+    pub fn pncclCommGetAsyncError(comm: ncclComm_t, async_error: *mut ncclResult_t)
+        -> ncclResult_t;
     pub fn ncclCommCount(comm: ncclComm_t, count: *mut c_int) -> ncclResult_t;
     pub fn pncclCommCount(comm: ncclComm_t, count: *mut c_int) -> ncclResult_t;
     pub fn ncclCommCuDevice(comm: ncclComm_t, device: *mut c_int) -> ncclResult_t;
     pub fn pncclCommCuDevice(comm: ncclComm_t, device: *mut c_int) -> ncclResult_t;
     pub fn ncclCommUserRank(comm: ncclComm_t, rank: *mut c_int) -> ncclResult_t;
     pub fn pncclCommUserRank(comm: ncclComm_t, rank: *mut c_int) -> ncclResult_t;
-    pub fn ncclCommRegister(comm: ncclComm_t, buff: *mut c_void, size: usize, handle: *mut *mut c_void) -> ncclResult_t;
-    pub fn pncclCommRegister(comm: ncclComm_t, buff: *mut c_void, size: usize, handle: *mut *mut c_void) -> ncclResult_t;
+    pub fn ncclCommRegister(
+        comm: ncclComm_t,
+        buff: *mut c_void,
+        size: usize,
+        handle: *mut *mut c_void,
+    ) -> ncclResult_t;
+    pub fn pncclCommRegister(
+        comm: ncclComm_t,
+        buff: *mut c_void,
+        size: usize,
+        handle: *mut *mut c_void,
+    ) -> ncclResult_t;
     pub fn ncclCommDeregister(comm: ncclComm_t, handle: *mut c_void) -> ncclResult_t;
     pub fn pncclCommDeregister(comm: ncclComm_t, handle: *mut c_void) -> ncclResult_t;
     pub fn ncclCommSuspend(comm: ncclComm_t, flags: c_int) -> ncclResult_t;
     pub fn pncclCommSuspend(comm: ncclComm_t, flags: c_int) -> ncclResult_t;
     pub fn ncclCommResume(comm: ncclComm_t) -> ncclResult_t;
     pub fn pncclCommResume(comm: ncclComm_t) -> ncclResult_t;
-    pub fn ncclCommMemStats(comm: ncclComm_t, stat: ncclCommMemStat_t, value: *mut u64) -> ncclResult_t;
-    pub fn pncclCommMemStats(comm: ncclComm_t, stat: ncclCommMemStat_t, value: *mut u64) -> ncclResult_t;
-    pub fn ncclCommWindowRegister(comm: ncclComm_t, buff: *mut c_void, size: usize, win: *mut ncclWindow_t, win_flags: c_int) -> ncclResult_t;
-    pub fn pncclCommWindowRegister(comm: ncclComm_t, buff: *mut c_void, size: usize, win: *mut ncclWindow_t, win_flags: c_int) -> ncclResult_t;
+    pub fn ncclCommMemStats(
+        comm: ncclComm_t,
+        stat: ncclCommMemStat_t,
+        value: *mut u64,
+    ) -> ncclResult_t;
+    pub fn pncclCommMemStats(
+        comm: ncclComm_t,
+        stat: ncclCommMemStat_t,
+        value: *mut u64,
+    ) -> ncclResult_t;
+    pub fn ncclCommWindowRegister(
+        comm: ncclComm_t,
+        buff: *mut c_void,
+        size: usize,
+        win: *mut ncclWindow_t,
+        win_flags: c_int,
+    ) -> ncclResult_t;
+    pub fn pncclCommWindowRegister(
+        comm: ncclComm_t,
+        buff: *mut c_void,
+        size: usize,
+        win: *mut ncclWindow_t,
+        win_flags: c_int,
+    ) -> ncclResult_t;
     pub fn ncclCommWindowDeregister(comm: ncclComm_t, win: ncclWindow_t) -> ncclResult_t;
     pub fn pncclCommWindowDeregister(comm: ncclComm_t, win: ncclWindow_t) -> ncclResult_t;
-    pub fn ncclWinGetUserPtr(comm: ncclComm_t, win: ncclWindow_t, out_user_ptr: *mut *mut c_void) -> ncclResult_t;
-    pub fn pncclWinGetUserPtr(comm: ncclComm_t, win: ncclWindow_t, out_user_ptr: *mut *mut c_void) -> ncclResult_t;
+    pub fn ncclWinGetUserPtr(
+        comm: ncclComm_t,
+        win: ncclWindow_t,
+        out_user_ptr: *mut *mut c_void,
+    ) -> ncclResult_t;
+    pub fn pncclWinGetUserPtr(
+        comm: ncclComm_t,
+        win: ncclWindow_t,
+        out_user_ptr: *mut *mut c_void,
+    ) -> ncclResult_t;
 
-    pub fn ncclRedOpCreatePreMulSum(op: *mut ncclRedOp_t, scalar: *mut c_void, datatype: ncclDataType_t, residence: ncclScalarResidence_t, comm: ncclComm_t) -> ncclResult_t;
-    pub fn pncclRedOpCreatePreMulSum(op: *mut ncclRedOp_t, scalar: *mut c_void, datatype: ncclDataType_t, residence: ncclScalarResidence_t, comm: ncclComm_t) -> ncclResult_t;
+    pub fn ncclRedOpCreatePreMulSum(
+        op: *mut ncclRedOp_t,
+        scalar: *mut c_void,
+        datatype: ncclDataType_t,
+        residence: ncclScalarResidence_t,
+        comm: ncclComm_t,
+    ) -> ncclResult_t;
+    pub fn pncclRedOpCreatePreMulSum(
+        op: *mut ncclRedOp_t,
+        scalar: *mut c_void,
+        datatype: ncclDataType_t,
+        residence: ncclScalarResidence_t,
+        comm: ncclComm_t,
+    ) -> ncclResult_t;
     pub fn ncclRedOpDestroy(op: ncclRedOp_t, comm: ncclComm_t) -> ncclResult_t;
     pub fn pncclRedOpDestroy(op: ncclRedOp_t, comm: ncclComm_t) -> ncclResult_t;
 
-    pub fn ncclReduce(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, op: ncclRedOp_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclReduce(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, op: ncclRedOp_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclBcast(buff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclBcast(buff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclBroadcast(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclBroadcast(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclAllReduce(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, op: ncclRedOp_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclAllReduce(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, op: ncclRedOp_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclReduceScatter(sendbuff: *const c_void, recvbuff: *mut c_void, recvcount: usize, datatype: ncclDataType_t, op: ncclRedOp_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclReduceScatter(sendbuff: *const c_void, recvbuff: *mut c_void, recvcount: usize, datatype: ncclDataType_t, op: ncclRedOp_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclAllGather(sendbuff: *const c_void, recvbuff: *mut c_void, sendcount: usize, datatype: ncclDataType_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclAllGather(sendbuff: *const c_void, recvbuff: *mut c_void, sendcount: usize, datatype: ncclDataType_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclAlltoAll(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclAlltoAll(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclGather(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclGather(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclScatter(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclScatter(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
+    pub fn ncclReduce(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclReduce(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclBcast(
+        buff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclBcast(
+        buff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclBroadcast(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclBroadcast(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclAllReduce(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclAllReduce(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclReduceScatter(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        recvcount: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclReduceScatter(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        recvcount: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclAllGather(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        sendcount: usize,
+        datatype: ncclDataType_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclAllGather(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        sendcount: usize,
+        datatype: ncclDataType_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclAlltoAll(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclAlltoAll(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclGather(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclGather(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclScatter(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclScatter(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
 
-    pub fn ncclAllReduceConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, op: ncclRedOp_t, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn pncclAllReduceConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, op: ncclRedOp_t, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn ncclBroadcastConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn pncclBroadcastConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn ncclReduceConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, op: ncclRedOp_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn pncclReduceConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, op: ncclRedOp_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn ncclAllGatherConfig(sendbuff: *const c_void, recvbuff: *mut c_void, sendcount: usize, datatype: ncclDataType_t, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn pncclAllGatherConfig(sendbuff: *const c_void, recvbuff: *mut c_void, sendcount: usize, datatype: ncclDataType_t, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn ncclReduceScatterConfig(sendbuff: *const c_void, recvbuff: *mut c_void, recvcount: usize, datatype: ncclDataType_t, op: ncclRedOp_t, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn pncclReduceScatterConfig(sendbuff: *const c_void, recvbuff: *mut c_void, recvcount: usize, datatype: ncclDataType_t, op: ncclRedOp_t, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn ncclAlltoAllConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn pncclAlltoAllConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn ncclGatherConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn pncclGatherConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn ncclScatterConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
-    pub fn pncclScatterConfig(sendbuff: *const c_void, recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, root: c_int, comm: ncclComm_t, stream: cudaStream_t, config: *const ncclCollConfig_t) -> ncclResult_t;
+    pub fn ncclAllReduceConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclAllReduceConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclBroadcastConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclBroadcastConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclReduceConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclReduceConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclAllGatherConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        sendcount: usize,
+        datatype: ncclDataType_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclAllGatherConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        sendcount: usize,
+        datatype: ncclDataType_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclReduceScatterConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        recvcount: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclReduceScatterConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        recvcount: usize,
+        datatype: ncclDataType_t,
+        op: ncclRedOp_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclAlltoAllConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclAlltoAllConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclGatherConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclGatherConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn ncclScatterConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
+    pub fn pncclScatterConfig(
+        sendbuff: *const c_void,
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        root: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+        config: *const ncclCollConfig_t,
+    ) -> ncclResult_t;
 
-    pub fn ncclSend(sendbuff: *const c_void, count: usize, datatype: ncclDataType_t, peer: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclSend(sendbuff: *const c_void, count: usize, datatype: ncclDataType_t, peer: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclRecv(recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, peer: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclRecv(recvbuff: *mut c_void, count: usize, datatype: ncclDataType_t, peer: c_int, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclPutSignal(localbuff: *const c_void, count: usize, datatype: ncclDataType_t, peer: c_int, peer_win: ncclWindow_t, peer_win_offset: usize, sig_idx: c_int, ctx: c_int, flags: c_uint, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclPutSignal(localbuff: *const c_void, count: usize, datatype: ncclDataType_t, peer: c_int, peer_win: ncclWindow_t, peer_win_offset: usize, sig_idx: c_int, ctx: c_int, flags: c_uint, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclSignal(peer: c_int, sig_idx: c_int, ctx: c_int, flags: c_uint, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclSignal(peer: c_int, sig_idx: c_int, ctx: c_int, flags: c_uint, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn ncclWaitSignal(n_desc: c_int, signal_descs: *mut ncclWaitSignalDesc_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
-    pub fn pncclWaitSignal(n_desc: c_int, signal_descs: *mut ncclWaitSignalDesc_t, comm: ncclComm_t, stream: cudaStream_t) -> ncclResult_t;
+    pub fn ncclSend(
+        sendbuff: *const c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        peer: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclSend(
+        sendbuff: *const c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        peer: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclRecv(
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        peer: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclRecv(
+        recvbuff: *mut c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        peer: c_int,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclPutSignal(
+        localbuff: *const c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        peer: c_int,
+        peer_win: ncclWindow_t,
+        peer_win_offset: usize,
+        sig_idx: c_int,
+        ctx: c_int,
+        flags: c_uint,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclPutSignal(
+        localbuff: *const c_void,
+        count: usize,
+        datatype: ncclDataType_t,
+        peer: c_int,
+        peer_win: ncclWindow_t,
+        peer_win_offset: usize,
+        sig_idx: c_int,
+        ctx: c_int,
+        flags: c_uint,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclSignal(
+        peer: c_int,
+        sig_idx: c_int,
+        ctx: c_int,
+        flags: c_uint,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclSignal(
+        peer: c_int,
+        sig_idx: c_int,
+        ctx: c_int,
+        flags: c_uint,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn ncclWaitSignal(
+        n_desc: c_int,
+        signal_descs: *mut ncclWaitSignalDesc_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
+    pub fn pncclWaitSignal(
+        n_desc: c_int,
+        signal_descs: *mut ncclWaitSignalDesc_t,
+        comm: ncclComm_t,
+        stream: cudaStream_t,
+    ) -> ncclResult_t;
 
     pub fn ncclGroupStart() -> ncclResult_t;
     pub fn pncclGroupStart() -> ncclResult_t;
@@ -429,12 +922,36 @@ extern "C" {
     pub fn pncclParamGetU64(h: ncclParamHandle_t, out: *mut u64) -> ncclResult_t;
     pub fn ncclParamGetStr(h: ncclParamHandle_t, out: *mut *const c_char) -> ncclResult_t;
     pub fn pncclParamGetStr(h: ncclParamHandle_t, out: *mut *const c_char) -> ncclResult_t;
-    pub fn ncclParamGet(h: ncclParamHandle_t, out: *mut c_void, max_len: c_int, len: *mut c_int) -> ncclResult_t;
-    pub fn pncclParamGet(h: ncclParamHandle_t, out: *mut c_void, max_len: c_int, len: *mut c_int) -> ncclResult_t;
-    pub fn ncclParamGetParameter(key: *const c_char, value: *mut *const c_char, value_len: *mut c_int) -> ncclResult_t;
-    pub fn pncclParamGetParameter(key: *const c_char, value: *mut *const c_char, value_len: *mut c_int) -> ncclResult_t;
-    pub fn ncclParamGetAllParameterKeys(table: *mut *const *const c_char, table_len: *mut c_int) -> ncclResult_t;
-    pub fn pncclParamGetAllParameterKeys(table: *mut *const *const c_char, table_len: *mut c_int) -> ncclResult_t;
+    pub fn ncclParamGet(
+        h: ncclParamHandle_t,
+        out: *mut c_void,
+        max_len: c_int,
+        len: *mut c_int,
+    ) -> ncclResult_t;
+    pub fn pncclParamGet(
+        h: ncclParamHandle_t,
+        out: *mut c_void,
+        max_len: c_int,
+        len: *mut c_int,
+    ) -> ncclResult_t;
+    pub fn ncclParamGetParameter(
+        key: *const c_char,
+        value: *mut *const c_char,
+        value_len: *mut c_int,
+    ) -> ncclResult_t;
+    pub fn pncclParamGetParameter(
+        key: *const c_char,
+        value: *mut *const c_char,
+        value_len: *mut c_int,
+    ) -> ncclResult_t;
+    pub fn ncclParamGetAllParameterKeys(
+        table: *mut *const *const c_char,
+        table_len: *mut c_int,
+    ) -> ncclResult_t;
+    pub fn pncclParamGetAllParameterKeys(
+        table: *mut *const *const c_char,
+        table_len: *mut c_int,
+    ) -> ncclResult_t;
     pub fn ncclParamDumpAll();
     pub fn pncclParamDumpAll();
 }
