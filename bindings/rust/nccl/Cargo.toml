@@ -1,0 +1,14 @@
+[package]
+name = "nccl"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Safe and idiomatic Rust bindings for NCCL"
+publish = false
+
+[features]
+default = []
+no-link = ["nccl-sys/no-link"]
+
+[dependencies]
+nccl-sys = { path = "../nccl-sys" }
