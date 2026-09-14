@@ -1,0 +1,12 @@
+[package]
+name = "nccl-sys"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Raw Rust FFI bindings for NCCL"
+publish = false
+links = "nccl"
+
+[features]
+default = []
+no-link = []
