@@ -195,21 +195,19 @@ impl Communicator {
     }
 
     pub fn destroy(mut self) -> Result<()> {
-        // SAFETY: live communicator owned by self.
-        let result = unsafe { sys::ncclCommDestroy(self.raw.as_ptr()) };
-        if result == sys::ncclSuccess {
-            self.closed = true;
-        }
-        check(result)
+        // Transfer ownership to NCCL before the call. Even an error must not
+        // cause Drop to retry destruction against a potentially consumed handle.
+        self.closed = true;
+        // SAFETY: live communicator owned by self and consumed by this method.
+        check(unsafe { sys::ncclCommDestroy(self.raw.as_ptr()) })
     }
 
-    pub fn abort(&mut self) -> Result<()> {
-        // SAFETY: live communicator owned by self.
-        let result = unsafe { sys::ncclCommAbort(self.raw.as_ptr()) };
-        if result == sys::ncclSuccess {
-            self.closed = true;
-        }
-        check(result)
+    pub fn abort(mut self) -> Result<()> {
+        // ncclCommAbort frees communicator resources, so consuming self prevents
+        // any subsequent safe method from using the invalidated C handle.
+        self.closed = true;
+        // SAFETY: live communicator owned by self and consumed by this method.
+        check(unsafe { sys::ncclCommAbort(self.raw.as_ptr()) })
     }
 
     pub fn create_pre_mul_sum<T: NcclType + Copy>(
