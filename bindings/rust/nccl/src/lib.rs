@@ -7,7 +7,7 @@
 //!
 //! The complete C ABI remains available through [`sys`].
 
-use std::ffi::{c_char, c_int, c_void, CStr, CString, NulError};
+use std::ffi::{c_char, c_void, CStr, CString, NulError};
 use std::fmt;
 use std::marker::PhantomData;
 use std::panic::{catch_unwind, resume_unwind, AssertUnwindSafe};
