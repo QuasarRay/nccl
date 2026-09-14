@@ -56,6 +56,8 @@ impl Communicator {
     /// The device pointers, root rank, reduction op, and asynchronous lifetime
     /// requirements must satisfy NCCL's `ncclReduceConfig` contract. Every
     /// pointer reachable through `config` must remain valid for the call.
+    // The argument list intentionally follows the corresponding NCCL call.
+    #[allow(clippy::too_many_arguments)]
     pub unsafe fn reduce_config<T: NcclType>(
         &self,
         send: *const T,
@@ -236,6 +238,8 @@ impl Communicator {
     /// `peer_window_offset` must identify a valid remote window region large
     /// enough for the transfer, and the signal/context indices must satisfy the
     /// communicator configuration.
+    // The argument list intentionally follows NCCL's one-sided RMA operation.
+    #[allow(clippy::too_many_arguments)]
     pub unsafe fn put_signal<T: NcclType>(
         &self,
         local: *const T,
